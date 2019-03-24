@@ -35,7 +35,7 @@ def load_vgg(sess, vgg_path):
     vgg_layer7_out_tensor_name = 'layer7_out:0'
     
     tf.saved_model.loader.load(sess, [vgg_tag], vgg_path)
-    input1 = tf.get_default_graph().get_tensor_by_name(vgg_input_tensor_name)
+    image_input = tf.get_default_graph().get_tensor_by_name(vgg_input_tensor_name)
     keep_prob = tf.get_default_graph().get_tensor_by_name(vgg_keep_prob_tensor_name)
     layer3_out = tf.get_default_graph().get_tensor_by_name(vgg_layer3_out_tensor_name)
     layer4_out = tf.get_default_graph().get_tensor_by_name(vgg_layer4_out_tensor_name)
@@ -173,7 +173,7 @@ def run():
         train_nn(sess, epochs, batch_size, get_batches_fn, train_op, cross_entropy_loss, input_image, correct_label, keep_prob, learning_rate)
 
         # TODO: Save inference data using helper.save_inference_samples
-         helper.save_inference_samples(runs_dir, data_dir, sess, image_shape, logits, keep_prob, input_image)
+        helper.save_inference_samples(runs_dir, data_dir, sess, image_shape, logits, keep_prob, input_image)
 
         # OPTIONAL: Apply the trained model to a video
 
