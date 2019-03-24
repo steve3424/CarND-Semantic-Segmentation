@@ -77,7 +77,7 @@ def layers(vgg_layer3_out, vgg_layer4_out, vgg_layer7_out, num_classes):
     layer3_skip = tf.add(layer3_in, layer3_1x1) 
 
     # upsample
-    nn_last_layer = tf.layers.conv2d_transpose(layer3_skip, num_classes, 16, strides=(8,8), padding='same', kernel_initializer=tf.random_normale_initializer(stddev=0.01), kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
+    nn_last_layer = tf.layers.conv2d_transpose(layer3_skip, num_classes, 16, strides=(8,8), padding='same', kernel_initializer=tf.random_normal_initializer(stddev=0.01), kernel_regularizer=tf.contrib.layers.l2_regularizer(1e-3))
 
     return nn_last_layer 
 tests.test_layers(layers)
